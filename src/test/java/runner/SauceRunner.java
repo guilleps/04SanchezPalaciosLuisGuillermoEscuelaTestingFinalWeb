@@ -8,7 +8,7 @@
     @CucumberOptions(
             features = "src/test/resources/features/SauceDemo.feature",
             glue = "stepdefinitions",
-            tags = "@SAUCE-3",
+            tags = "@HAPPYPATH",
             snippets = CucumberOptions.SnippetType.CAMELCASE
     )
     public class SauceRunner {

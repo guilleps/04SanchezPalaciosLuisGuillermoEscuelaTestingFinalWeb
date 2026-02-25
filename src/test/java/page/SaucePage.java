@@ -5,57 +5,158 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @DefaultUrl("https://www.saucedemo.com")
 public class SaucePage extends PageObject {
 
+    // LOGIN
     @FindBy(id = "user-name")
-    WebElementFacade inputUsername;
+    private WebElementFacade inputUsername;
 
     @FindBy(id = "password")
-    WebElementFacade inputPassword;
+    private WebElementFacade inputPassword;
 
     @FindBy(id = "login-button")
-    WebElementFacade btnLogin;
+    private WebElementFacade btnLogin;
 
+    // PRODUCTOS
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
-    WebElementFacade productoMochila;
+    private WebElementFacade btnAddBackpack;
+
+    @FindBy(id = "add-to-cart-sauce-labs-bike-light")
+    WebElementFacade btnAddBikeLightProduct;
+
+    @FindBy(id = "add-to-cart-sauce-labs-bolt-t-shirt")
+    WebElementFacade btnAddBlackTShirtProduct;
+
+    @FindBy(id = "add-to-cart-sauce-labs-fleece-jacket")
+    WebElementFacade btnAddJacketProduct;
+
+    @FindBy(id = "add-to-cart-sauce-labs-onesie")
+    WebElementFacade btnAddOnesieProduct;
+
+    @FindBy(id = "add-to-cart-test.allthethings()-t-shirt-(red)")
+    WebElementFacade btnAddOrangeTShirtProduct;
 
     @FindBy(css = "[data-test='shopping-cart-link']")
-    WebElementFacade carritoDeCompras;
+    private WebElementFacade btnCart;
 
+    // CHECKOUT
     @FindBy(id = "checkout")
-    WebElementFacade btnCheckout;
+    private WebElementFacade btnCheckout;
 
     @FindBy(id = "first-name")
-    WebElementFacade inputFirstName;
+    private WebElementFacade inputFirstName;
 
     @FindBy(id = "last-name")
-    WebElementFacade inputLastName;
+    private WebElementFacade inputLastName;
 
     @FindBy(id = "postal-code")
-    WebElementFacade inputPostalCode;
+    private WebElementFacade inputPostalCode;
 
-    public void escribirUsernameYPassword(String username, String password) {
-        inputUsername.type(username);
-        inputPassword.type(password);
-        btnLogin.click();
+    @FindBy(id = "continue")
+    private WebElementFacade btnContinue;
+
+    @FindBy(id = "finish")
+    private WebElementFacade btnFinish;
+
+    @FindBy(id = "react-burger-menu-btn")
+    WebElementFacade btnToggleMenu;
+
+    @FindBy(id = "logout_sidebar_link")
+    WebElementFacade btnLogout;
+
+    @FindBy(css = ".inventory_list")
+    private WebElementFacade productList;
+
+    @FindBy(css = ".title")
+    private WebElementFacade checkoutCompleteTitle;
+
+    @FindBy(id = "back-to-products")
+    WebElementFacade btnBackToProducts;
+
+    @FindBy(css = ".complete-header")
+    private WebElementFacade mensajeConfirmacion;
+
+    public void validarCompraExitosa() {
+        checkoutCompleteTitle.shouldBeVisible();
+        checkoutCompleteTitle.shouldContainText("Checkout: Complete!");
+
+        mensajeConfirmacion.shouldBeVisible();
+        mensajeConfirmacion.shouldContainText("Thank you for your order!");
+
+        btnBackToProducts.shouldBeVisible();
     }
 
-    public void agregarUnProductoAlCarrito() {
-        productoMochila.click();
+    public void validarUrl(String url) {
+        assertThat(getDriver().getCurrentUrl())
+                .contains(url);
     }
 
-    public void ingresarAlCarritoDeCompras() {
-        carritoDeCompras.click();
+    public void visualizarListaDeProductos() {
+        productList.shouldBeVisible();
     }
 
-    public void ingresarAlCheckout() {
-        btnCheckout.click();
+    public void escribirUsername(String username) {
+        inputUsername.sendKeys(username);
     }
 
-    public void completarFormularioCheckout(String firstName, String lastName, String postalCode) {
-        inputFirstName.type(firstName);
-        inputLastName.type(lastName);
-        inputPostalCode.type(postalCode);
+    public void escribirPassword(String password) {
+        inputPassword.sendKeys(password);
+    }
+
+    public void loguearse() {
+        btnLogin.waitUntilClickable().click();
+    }
+
+    public void agregarBackpackAlCarrito() {
+        btnAddBackpack.click();
+    }
+
+    public void escribiFirstname(String firstname) {
+        inputFirstName.sendKeys(firstname);
+    }
+
+    public void escribirLastname(String lastname) {
+        inputLastName.sendKeys(lastname);
+    }
+
+    public void escribirPostalcode(String postalcode) {
+        inputPostalCode.sendKeys(postalcode);
+    }
+
+    public void clickCart() {
+        btnCart.waitUntilClickable().click();
+    }
+
+    public void clickCheckout() {
+        btnCheckout.waitUntilClickable().click();
+    }
+
+    public void clickContinue() {
+        btnContinue.waitUntilClickable().click();
+    }
+
+    public void clickFinish() {
+        btnFinish.waitUntilClickable().click();
+    }
+
+    public void clickToggleMenu() {
+        btnToggleMenu.waitUntilClickable().click();
+    }
+
+    public void clickLogout() {
+        btnLogout.waitUntilClickable().click();
+    }
+
+    public void validarPantallaLogin() {
+
+        inputUsername.shouldBeVisible();
+        inputPassword.shouldBeVisible();
+        btnLogin.shouldBeVisible();
+
+        assertThat(getDriver().getCurrentUrl())
+                .contains("saucedemo.com");
     }
 }

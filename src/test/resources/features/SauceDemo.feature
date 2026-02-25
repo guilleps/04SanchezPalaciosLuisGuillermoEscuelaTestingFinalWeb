@@ -1,21 +1,23 @@
 # language: es
-Característica: Quiero automatizar la web de SauceDemo
+@HAPPYPATH @HOME
+Característica: Proceso de compra en SauceDemo
 
-  @SAUCE-1 @SAUCEDEMO
-  Escenario: Abrir la página principal de SauceDemo
-    Dado que el usuario abre la pagina de SauceDemo
+  Antecedentes:
+    Dado que el usuario accede a SauceDemo
 
-  @SAUCE-2 @SAUCEDEMO
-  Escenario: Escribir username y password en SauceDemo
-    Dado que el usuario abre la pagina de SauceDemo
-    Y que el usuario inicia sesión con usuario "standard_user" y contraseña "secret_sauce"
+  @SAUCE-1 @LOGIN
+  Escenario: Login exitoso
+    Cuando el usuario inicia sesión con usuario "standard_user" y contraseña "secret_sauce"
+    Entonces debería visualizar la página de productos
 
-  @SAUCE-3 @SAUCEDEMO
-  Escenario: Añadir un producto al carrito y verificarlo en SauceDemo
-    Dado que el usuario abre la pagina de SauceDemo
-    Y que el usuario inicia sesión con usuario "standard_user" y contraseña "secret_sauce"
-    Y el usuario añade un producto al carrito
-    Y ingresa al carrito
-    Y el usuario continúa al checkout de la compra
+  @SAUCE-2 @COMPRA
+  Escenario: Compra exitosa
+    Dado que el usuario ha iniciado sesión correctamente
+    Cuando realiza una compra con nombre "Memo", apellido "Palacios" y código postal "13001"
+    Entonces debería visualizar el mensaje de confirmación
 
-    Cuando el usuario completa el checkout con nombre "Memo" apellido "Palacios" y código postal "13001"
+  @SAUCE-3 @LOGOUT
+  Escenario: Cierre de sesión exitoso
+    Dado que el usuario ha iniciado sesión correctamente
+    Cuando cierra sesión
+    Entonces debería visualizar la pantalla de login

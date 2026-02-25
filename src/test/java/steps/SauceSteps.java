@@ -8,32 +8,64 @@ public class SauceSteps {
     SaucePage saucePage;
 
     @Step
-    public void abrirSauceDemo() {
+    public void abrirPagina() {
         saucePage.open();
     }
 
     @Step
-    public void escribirUsernameYPassword(String username, String password) {
-        saucePage.escribirUsernameYPassword(username, password);
+    public void iniciarSesion(String username, String password) {
+        saucePage.escribirUsername(username);
+        saucePage.escribirPassword(password);
+        saucePage.loguearse();
     }
 
     @Step
-    public void agregarUnProductoAlCarrito() {
-        saucePage.agregarUnProductoAlCarrito();
+    public void realizarCompra(String firstname, String lastname, String postalcode) {
+        saucePage.agregarBackpackAlCarrito();
+        saucePage.clickCart();
+        saucePage.clickCheckout();
+
+        saucePage.escribiFirstname(firstname);
+        saucePage.escribirLastname(lastname);
+        saucePage.escribirPostalcode(postalcode);
+
+        saucePage.clickContinue();
+        saucePage.clickFinish();
     }
 
     @Step
-    public void ingresarAlCarritoDeCompras() {
-        saucePage.ingresarAlCarritoDeCompras();
+    public void iniciarSesionCorrectamente(String username, String password) {
+        saucePage.open();
+        saucePage.escribirUsername(username);
+        saucePage.escribirPassword(password);
+        saucePage.loguearse();
+        validarLoginExitoso();
     }
 
     @Step
-    public void ingresarAlCheckout() {
-        saucePage.ingresarAlCheckout();
+    public void validarLoginExitoso() {
+        saucePage.validarUrl("inventory.html");
+        saucePage.visualizarListaDeProductos();
     }
 
     @Step
-    public void elUsuarioCompletaElCheckoutConNombreApellidoYCodigoPostal(String firstName, String lastName, String postalCode) {
-        saucePage.completarFormularioCheckout(firstName, lastName, postalCode);
+    public void visualizarListaDeProductos() {
+        saucePage.visualizarListaDeProductos();
+    }
+
+    @Step
+    public void visualizarMensajeDeConfirmacion() {
+        saucePage.validarCompraExitosa();
+    }
+
+    @Step
+    public void cerrarSesion() {
+        saucePage.clickToggleMenu();
+        saucePage.clickLogout();
+    }
+
+    @Step
+    public void visualizarPantallaDeLogin() {
+        saucePage.validarPantallaLogin();
     }
 }
