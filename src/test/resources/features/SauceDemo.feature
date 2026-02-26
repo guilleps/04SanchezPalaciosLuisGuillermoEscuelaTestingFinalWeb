@@ -1,5 +1,5 @@
 # language: es
-@HAPPYPATH @HOME
+@HAPPYPATH
 Característica: Proceso de compra en SauceDemo
 
   Antecedentes:

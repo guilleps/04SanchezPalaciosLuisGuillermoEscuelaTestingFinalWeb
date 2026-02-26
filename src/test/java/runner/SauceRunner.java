@@ -1,15 +1,15 @@
-    package runner;
+package runner;
 
-    import io.cucumber.junit.CucumberOptions;
-    import net.serenitybdd.cucumber.CucumberWithSerenity;
-    import org.junit.runner.RunWith;
+import io.cucumber.junit.CucumberOptions;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+import org.junit.runner.RunWith;
 
-    @RunWith(CucumberWithSerenity.class)
-    @CucumberOptions(
-            features = "src/test/resources/features/SauceDemo.feature",
-            glue = "stepdefinitions",
-            tags = "@HAPPYPATH",
-            snippets = CucumberOptions.SnippetType.CAMELCASE
-    )
-    public class SauceRunner {
-    }
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(
+        features = "src/test/resources/features/checkout.feature",
+        glue = "stepdefinitions",
+        tags = "@CHECKOUT-03",
+        snippets = CucumberOptions.SnippetType.CAMELCASE
+)
+public class SauceRunner {
+}
