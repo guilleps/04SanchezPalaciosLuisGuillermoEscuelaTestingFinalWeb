@@ -1,5 +1,5 @@
 # language: es
-@COMPRA
+@REGRESSION @COMPRA
 Característica: Flujo completo de compra en SauceDemo
 
   @COMPRA-01

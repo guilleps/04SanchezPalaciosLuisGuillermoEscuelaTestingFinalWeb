@@ -1,5 +1,5 @@
 # language: es
-@CHECKOUT
+@REGRESSION @CHECKOUT
 Característica: Validaciones del formulario de checkout
 
   Antecedentes:

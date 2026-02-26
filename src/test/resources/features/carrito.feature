@@ -1,5 +1,5 @@
 # language: es
-@CARRITO
+@REGRESSION @CARRITO
 Característica: Gestión del carrito en SauceDemo
 
   Antecedentes:

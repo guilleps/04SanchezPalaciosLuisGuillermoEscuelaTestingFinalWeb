@@ -1,5 +1,5 @@
 # language: es
-@LOGIN
+@REGRESSION @LOGIN
 Característica: Login en SauceDemo
 
   Antecedentes:
@@ -7,7 +7,7 @@ Característica: Login en SauceDemo
 
   @LOGIN-01
   Esquema del escenario: Login según tipo de usuario
-    Cuando el usuario inicia sesión con usuario "<username>" y contraseña "secret_sauce"
+    Cuando el usuario inicia sesión con usuario "<username>"
     Entonces debería ver el resultado de login "<resultado>"
 
     Ejemplos:
@@ -25,6 +25,17 @@ Característica: Login en SauceDemo
     Entonces debería ver el mensaje de error "<mensaje>"
 
     Ejemplos:
-      | username      | password     | mensaje              |
-      |               | secret_sauce | Username is required |
-      | standard_user |              | Password is required |
+      | username      | password                | mensaje              |
+      |               | #{credentials.password} | Username is required |
+      | standard_user |                         | Password is required |
+
+  @LOGIN-03
+  Esquema del escenario: Login con credenciales inválidas
+    Cuando el usuario inicia sesión con usuario "<username>" y contraseña "<password>"
+    Entonces debería ver el mensaje de error "<mensaje>"
+
+    Ejemplos:
+      | username      | password                | mensaje                                                     |
+      | standard_user | wrong_password          | Username and password do not match any user in this service |
+      | usuario_falso | #{credentials.password} | Username and password do not match any user in this service |
+      | usuario_falso | wrong_password          | Username and password do not match any user in this service |
