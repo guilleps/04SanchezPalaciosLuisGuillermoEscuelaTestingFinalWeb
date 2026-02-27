@@ -1,12 +1,9 @@
 package stepdefinitions.login;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
 import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
-import net.thucydides.model.util.EnvironmentVariables;
 import steps.login.LoginSteps;
 
 public class LoginStepDefinitions {

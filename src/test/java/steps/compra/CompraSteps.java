@@ -1,8 +1,6 @@
 package steps.compra;
 
 import net.serenitybdd.annotations.Step;
-import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
-import net.thucydides.model.util.EnvironmentVariables;
 import page.*;
 
 import static net.serenitybdd.core.Serenity.getDriver;
