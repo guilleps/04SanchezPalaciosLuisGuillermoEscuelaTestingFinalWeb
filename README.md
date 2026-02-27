@@ -1,6 +1,7 @@
 # Prueba final web - Serenity - Escuela Testing
 
 ---
+![Sauce Demo Home](resources/saucedemohome.png)
 
 # Módulos Automatizados
 
